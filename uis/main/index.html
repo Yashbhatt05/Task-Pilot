@@ -5,6 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>App 1</title>
     <link href="/src/styles.css" rel="stylesheet">
+
+    <!-- RELAY JS -->
+	<script>
+		const send_message = (data) => {
+			window.parent.parent?.postMessage(data, '*');
+		};
+
+		const tim = setInterval(() => {
+			// const GFN = window.GFN;
+			// if(!GFN){
+			//     console.log("WAITING FOR GFN TO BE LOADED BEFORE REQUESTING RELAY JS");
+			//     return;
+			// }
+			console.log("REQUESTING RELAY JS");
+			const data = {
+				type: "req_for_relay_js"
+			}
+			send_message(data);
+		}, 1000);
+
+		const listen_msg = (e) => {
+			console.log('listening for messages in the script tag', e);
+			const data = e.data;
+			if (data.type === 'relay_js') {
+				const code = data.code;
+				if (code) {
+					// console.log("relay js", code);
+					clearInterval(tim);
+					window.removeEventListener("message", listen_msg);
+
+					try {
+						const s = document.createElement("script");
+						s.id = "relay-js";
+						s.text = code;
+						document.head.append(s);
+					} catch (error) {
+						console.log("error while adding relay js", error);
+					}
+				}
+			}
+
+		}
+		window.addEventListener('message', listen_msg);
+	</script>
+		<!-- const tim = setInterval(() => {
+			// const GFN = window.GFN;
+			// if(!GFN){
+			//     console.log("WAITING FOR GFN TO BE LOADED BEFORE REQUESTING RELAY JS");
+			//     return;
+			// }
+			console.log("REQUESTING RELAY JS");
+			const data = {
+				type: "req_for_relay_js"
+			}
+			send_message(data);
+		}, 1000);
+
+		const listen_msg = (e) => {
+			console.log('listening for messages in the script tag', e);
+			const data = e.data;
+			if (data.type === 'relay_js') {
+				const code = data.code;
+				if (code) {
+					// console.log("relay js", code);
+					clearInterval(tim);
+					window.removeEventListener("message", listen_msg);
+
+					try {
+						const s = document.createElement("script");
+						s.id = "relay-js";
+						s.text = code;
+						document.head.append(s);
+					} catch (error) {
+						console.log("error while adding relay js", error);
+					}
+				}
+			}
+
+		}
+		window.addEventListener('message', listen_msg);
+	</script> -->
   </head>
   <body>
     <div id="root"></div>
