@@ -182,6 +182,21 @@ export default function Task() {
               </div>
             </div>
           </div>
+          {/* Action Buttons */}
+         <div className="flex justify-end space-x-4 mt-8">
+          <button onClick={() => setIsOpen(false)} className="px-4 py-2 border border-red-500 text-red-500 rounded-md hover:bg-red-50 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            Cancel
+          </button>
+          <button className="px-6 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Add
+          </button>
+        </div>
         </section>
       </Modal>
 

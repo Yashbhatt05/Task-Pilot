@@ -11,6 +11,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { Link } from "react-router";
+import { useEffect } from "react";
 
 // This is sample data.
 const data = {
@@ -45,6 +46,10 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	const [activeUrl, setActiveUrl] = React.useState<string>("");
+  React.useEffect(()=>{
+    setActiveUrl(window.location.pathname)
+  })
+  
   return (
     <Sidebar {...props}>
       <SidebarHeader>
