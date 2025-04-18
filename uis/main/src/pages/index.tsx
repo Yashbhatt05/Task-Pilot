@@ -11,7 +11,7 @@ import { Route, Routes } from "react-router";
 const Pages = () => {
     return (
         <SidebarProvider>
-            <AppSidebar />
+            <AppSidebar  />
             <SidebarTrigger className="-ml-1" />
             <div className="flex-1 overflow-auto bg-[#efeaf4]   p-2">
                 <Routes>
